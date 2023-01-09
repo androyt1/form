@@ -18,7 +18,7 @@ const RegForm = () => {
   }
 
   return (
-    <div className='mx-auto w-[75%]  p-3'>
+    <div className='mx-auto w-full md:w-[75%]  p-3'>
     <div className='border-2 border-stone-100 mb-2 '>
       <input type="text" placeholder='FullName' name='fullName' value={fullName} onChange={handleChange} className='border-1 border-stone-400 focus:outline-none focus:bg-blue-100 w-full p-1' />
     </div>
