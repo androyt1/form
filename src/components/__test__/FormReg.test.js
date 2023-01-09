@@ -1,6 +1,5 @@
 import {screen,render} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import useEvent from '@testing-library/user-event'
 import RegForm from '../RegForm'
 
 describe('Form',()=>{
@@ -58,5 +57,18 @@ describe('Form',()=>{
         const cPasswordElement=screen.getByPlaceholderText("Confirm Password")
         userEvent.type(cPasswordElement,'peculiar')
         expect(cPasswordElement.value).toBe('peculiar')
+    })
+})
+
+describe("Test the form",()=>{
+    it("Should show error message if inputs fields are empty",()=>{
+        render(<RegForm/>)
+        const button=screen.getByRole("button",{name:/submit/i})
+        const fullNameElement=screen.getByPlaceholderText(/fullname/i)
+        userEvent.click(button)
+        expect(screen.getByText(/FullName is invalid/i)).toBeInTheDocument()
+        expect(screen.getByText(/Email is invalid/i)).toBeInTheDocument()
+        expect(screen.getByText(/Password is invalid/i)).toBeInTheDocument()
+        expect(screen.getByText(/please retype password/i)).toBeInTheDocument() 
     })
 })
